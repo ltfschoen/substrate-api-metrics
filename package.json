@@ -1,0 +1,28 @@
+{
+  "name": "substrate-api-metrics",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/ltfschoen/substrate-api-metrics.git",
+  "author": "Luke Schoen <ltfschoen@gmail.com>",
+  "maintainers": [
+    "Luke Schoen <ltfschoen@gmail.com>"
+  ],
+  "contributors": [],
+  "description": "Node.js API for ReadMe.io to retrieve Substrate Swagger/OAS JSON file and send API Logs to ReadMe.io for API Metrics",
+  "keywords": ["parity", "substrate", "polkadot", "readmeio", "swagger", "oas"],
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "readmeio": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
+}

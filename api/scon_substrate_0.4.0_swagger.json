@@ -1,0 +1,295 @@
+{
+  "swagger" : "2.0",
+  "x-service-type" : "json-rpc",
+  "info" : {
+    "description" : "[Substrate](https://www.parity.io/substrate) exposes a [JSON-RPC](https://www.jsonrpc.org/specification) root API endpoint that support SSL (https) connections from POST requests.\n\nA version of a Substrate OpenAPI Specification 3 (OAS3) for demonstration purposes only, (formally referred to as a [Swagger](http://swagger.io) API Specification) has been authored. It provides only a limited set of the available JSON-RPC methods with the intention of allowing anyone to use the [Swagger UI](https://swagger.io/tools/swagger-ui/) to visualise and interact with the API of a Substrate Node at https://substrate-ui.parity.io.\n\nUsage involves clicking any of the 'green'-coloured POST buttons that represent RPC calls with different sections, methods, and parameters. It will reveal a *Try it out!* button, and when you click that button it automatically generates an appropriate cURL POST request object that represents an RPC call when you then send it by clicking the *Execute* button, which shows the response.\n\nUnfortunately the latest [OAS3](https://swagger.io/docs/specification/paths-and-operations/) does not allow multiple POST methods for the same root API endpoint path. The alternative chosen has been to author the Substrate OAS3 with the endpoint name for each POST request matching the name of the associated JSON-RPC method, and having our DevOps team configure redirecting RPC calls received at each of those endpoints to the root API endpoint (i.e. cURL request to 'Request URL' of https://substrate-rpc.parity.io/chain_getRuntimeVersion actually gets redirected to https://substrate-ui.parity.io/). ",
+    "version" : "0.4.0",
+    "title" : "Substrate OAS3",
+    "contact" : {
+      "email" : "luke@parity.io"
+    },
+    "license" : {
+      "name" : "GNU v3 License",
+      "url" : "https://github.com/paritytech/substrate/blob/master/LICENSE"
+    }
+  },
+  "host" : "substrate-rpc.parity.io",
+  "basePath" : "/",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/chain_getRuntimeVersion" : {
+      "post" : {
+        "tags" : [ "chain_getRuntimeVersion" ],
+        "summary" : "Get the runtime version",
+        "description" : "Get the runtime version using JSON-RPC",
+        "operationId" : "chain_getRuntimeVersion",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "JSON-RPC data",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ChainGetRuntimeVersionRequestParameters"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/GenericResponseParameters"
+            }
+          }
+        }
+      }
+    },
+    "/state_getMetadata" : {
+      "post" : {
+        "tags" : [ "state_getMetadata" ],
+        "summary" : "Get the runtime metadata",
+        "description" : "Get the runtime metadata using JSON-RPC",
+        "operationId" : "state_getMetadata",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "JSON-RPC data",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/StateGetMetadataRequestParameters"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/GenericResponseParameters"
+            }
+          }
+        }
+      }
+    },
+    "/system_chain" : {
+      "post" : {
+        "tags" : [ "system_chain" ],
+        "summary" : "Get the chain name",
+        "description" : "Get the chain name using JSON-RPC",
+        "operationId" : "system_chain",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "JSON-RPC data",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/SystemChainRequestParameters"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/GenericResponseParameters"
+            }
+          }
+        }
+      }
+    },
+    "/system_name" : {
+      "post" : {
+        "tags" : [ "system_name" ],
+        "summary" : "Get the node name",
+        "description" : "Get the node name using JSON-RPC",
+        "operationId" : "system_name",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "JSON-RPC data",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/SystemNameRequestParameters"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/GenericResponseParameters"
+            }
+          }
+        }
+      }
+    },
+    "/system_version" : {
+      "post" : {
+        "tags" : [ "system_version" ],
+        "summary" : "Get the version of the node",
+        "description" : "Get the version of the node using JSON-RPC",
+        "operationId" : "system_version",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "JSON-RPC data",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/SystemVersionRequestParameters"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/GenericResponseParameters"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ChainGetRuntimeVersionRequestParameters" : {
+      "type" : "object",
+      "description" : "[JSON-RPC Request Object](https://www.jsonrpc.org/specification#request_object)",
+      "required" : [ "jsonrpc", "method", "params", "id" ],
+      "properties" : {
+        "jsonrpc" : {
+          "type" : "number",
+          "example" : "2.0"
+        },
+        "method" : {
+          "type" : "string",
+          "example" : "chain_getRuntimeVersion"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int",
+          "description" : "Nonce",
+          "example" : "0"
+        }
+      },
+      "xml" : {
+        "name" : "ChainGetRuntimeVersionRequestParameters"
+      }
+    },
+    "StateGetMetadataRequestParameters" : {
+      "type" : "object",
+      "description" : "[JSON-RPC Request Object](https://www.jsonrpc.org/specification#request_object)",
+      "required" : [ "jsonrpc", "method", "params", "id" ],
+      "properties" : {
+        "jsonrpc" : {
+          "type" : "number",
+          "example" : "2.0"
+        },
+        "method" : {
+          "type" : "string",
+          "example" : "state_getMetadata"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int",
+          "description" : "Nonce",
+          "example" : "0"
+        }
+      },
+      "xml" : {
+        "name" : "GetMetadataResponseParameters"
+      }
+    },
+    "GenericResponseParameters" : {
+      "type" : "object",
+      "description" : "[JSON-RPC Response Object](https://www.jsonrpc.org/specification#response_object)",
+      "properties" : {
+        "jsonrpc" : {
+          "type" : "number",
+          "example" : "2.0"
+        },
+        "result" : {
+          "type" : "object",
+          "example" : { }
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int",
+          "description" : "Nonce"
+        }
+      },
+      "xml" : {
+        "name" : "GetStorageResponseParameters"
+      }
+    },
+    "SystemChainRequestParameters" : {
+      "type" : "object",
+      "description" : "[JSON-RPC Request Object](https://www.jsonrpc.org/specification#request_object)",
+      "required" : [ "jsonrpc", "method", "id" ],
+      "properties" : {
+        "jsonrpc" : {
+          "type" : "number",
+          "example" : "2.0"
+        },
+        "method" : {
+          "type" : "string",
+          "example" : "system_chain"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int",
+          "description" : "Nonce",
+          "example" : "0"
+        }
+      },
+      "xml" : {
+        "name" : "SystemChainRequestParameters"
+      }
+    },
+    "SystemNameRequestParameters" : {
+      "type" : "object",
+      "description" : "[JSON-RPC Request Object](https://www.jsonrpc.org/specification#request_object)",
+      "required" : [ "jsonrpc", "method", "id" ],
+      "properties" : {
+        "jsonrpc" : {
+          "type" : "number",
+          "example" : "2.0"
+        },
+        "method" : {
+          "type" : "string",
+          "example" : "system_name"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int",
+          "description" : "Nonce",
+          "example" : "0"
+        }
+      },
+      "xml" : {
+        "name" : "SystemNameRequestParameters"
+      }
+    },
+    "SystemVersionRequestParameters" : {
+      "type" : "object",
+      "description" : "[JSON-RPC Request Object](https://www.jsonrpc.org/specification#request_object)",
+      "required" : [ "jsonrpc", "method", "id" ],
+      "properties" : {
+        "jsonrpc" : {
+          "type" : "number",
+          "example" : "2.0"
+        },
+        "method" : {
+          "type" : "string",
+          "example" : "system_version"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int",
+          "description" : "Nonce",
+          "example" : "0"
+        }
+      },
+      "xml" : {
+        "name" : "SystemVersionRequestParameters"
+      }
+    }
+  }
+}
