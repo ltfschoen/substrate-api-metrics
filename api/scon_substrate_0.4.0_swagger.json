@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "x-service-type" : "json-rpc",
   "info" : {
-    "description" : "[Substrate](https://www.parity.io/substrate) exposes a [JSON-RPC](https://www.jsonrpc.org/specification) root API endpoint that support SSL (https) connections from POST requests.\n\nA version of a Substrate OpenAPI Specification 3 (OAS3) for demonstration purposes only, (formally referred to as a [Swagger](http://swagger.io) API Specification) has been authored. It provides only a limited set of the available JSON-RPC methods with the intention of allowing anyone to use the [Swagger UI](https://swagger.io/tools/swagger-ui/) to visualise and interact with the API of a Substrate Node at https://substrate-ui.parity.io.\n\nUsage involves clicking any of the 'green'-coloured POST buttons that represent RPC calls with different sections, methods, and parameters. It will reveal a *Try it out!* button, and when you click that button it automatically generates an appropriate cURL POST request object that represents an RPC call when you then send it by clicking the *Execute* button, which shows the response.\n\nUnfortunately the latest [OAS3](https://swagger.io/docs/specification/paths-and-operations/) does not allow multiple POST methods for the same root API endpoint path. The alternative chosen has been to author the Substrate OAS3 with the endpoint name for each POST request matching the name of the associated JSON-RPC method, and having our DevOps team configure redirecting RPC calls received at each of those endpoints to the root API endpoint (i.e. cURL request to 'Request URL' of https://substrate-rpc.parity.io/chain_getRuntimeVersion actually gets redirected to https://substrate-ui.parity.io/). ",
+    "description" : "[Substrate](https://www.parity.io/substrate) exposes a [JSON-RPC](https://www.jsonrpc.org/specification) root API endpoint that support SSL (https) connections from POST requests.\n\nA version of a Substrate OpenAPI Specification 3 (OAS3) for demonstration purposes only (formally referred to as a [Swagger](http://swagger.io) API Specification) has been authored. It provides only a limited set of the available JSON-RPC methods with the intention of allowing anyone to use the [Swagger UI](https://swagger.io/tools/swagger-ui/) to visualise and interact with the API of a Substrate Node at https://substrate-ui.parity.io.\n\nUsage involves clicking any of the 'green'-coloured POST buttons that represent RPC calls with different sections, methods, and parameters. It will reveal a *Try it out!* button, and when you click that button it automatically generates an appropriate cURL POST request object that represents an RPC call when you then send it by clicking the *Execute* button, which shows the response.\n\nUnfortunately the latest [OAS3](https://swagger.io/docs/specification/paths-and-operations/) does not allow multiple POST methods for the same root API endpoint path. The alternative chosen has been to author the Substrate OAS3 with the endpoint name for each POST request matching the name of the associated JSON-RPC method, and having our DevOps team configure redirecting RPC calls received at each of those endpoints to the root API endpoint (i.e. cURL request to 'Request URL' of https://substrate-rpc.parity.io/chain_getRuntimeVersion actually gets redirected to https://substrate-ui.parity.io/). ",
     "version" : "0.4.0",
     "title" : "Substrate OAS3",
     "contact" : {
@@ -28,7 +28,6 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "JSON-RPC data",
-          "required" : true,
           "schema" : {
             "$ref" : "#/definitions/ChainGetRuntimeVersionRequestParameters"
           }
@@ -54,7 +53,6 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "JSON-RPC data",
-          "required" : true,
           "schema" : {
             "$ref" : "#/definitions/StateGetMetadataRequestParameters"
           }
@@ -80,7 +78,6 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "JSON-RPC data",
-          "required" : true,
           "schema" : {
             "$ref" : "#/definitions/SystemChainRequestParameters"
           }
@@ -106,7 +103,6 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "JSON-RPC data",
-          "required" : true,
           "schema" : {
             "$ref" : "#/definitions/SystemNameRequestParameters"
           }
@@ -132,7 +128,6 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "JSON-RPC data",
-          "required" : true,
           "schema" : {
             "$ref" : "#/definitions/SystemVersionRequestParameters"
           }
@@ -152,7 +147,7 @@
     "ChainGetRuntimeVersionRequestParameters" : {
       "type" : "object",
       "description" : "[JSON-RPC Request Object](https://www.jsonrpc.org/specification#request_object)",
-      "required" : [ "jsonrpc", "method", "params", "id" ],
+      "required" : [ "jsonrpc", "method", "id" ],
       "properties" : {
         "jsonrpc" : {
           "type" : "number",
@@ -164,8 +159,6 @@
         },
         "id" : {
           "type" : "integer",
-          "format" : "int",
-          "description" : "Nonce",
           "example" : "0"
         }
       },
@@ -176,7 +169,7 @@
     "StateGetMetadataRequestParameters" : {
       "type" : "object",
       "description" : "[JSON-RPC Request Object](https://www.jsonrpc.org/specification#request_object)",
-      "required" : [ "jsonrpc", "method", "params", "id" ],
+      "required" : [ "jsonrpc", "method", "id" ],
       "properties" : {
         "jsonrpc" : {
           "type" : "number",
@@ -188,8 +181,6 @@
         },
         "id" : {
           "type" : "integer",
-          "format" : "int",
-          "description" : "Nonce",
           "example" : "0"
         }
       },
@@ -210,9 +201,7 @@
           "example" : { }
         },
         "id" : {
-          "type" : "integer",
-          "format" : "int",
-          "description" : "Nonce"
+          "type" : "integer"
         }
       },
       "xml" : {
@@ -234,8 +223,6 @@
         },
         "id" : {
           "type" : "integer",
-          "format" : "int",
-          "description" : "Nonce",
           "example" : "0"
         }
       },
@@ -258,8 +245,6 @@
         },
         "id" : {
           "type" : "integer",
-          "format" : "int",
-          "description" : "Nonce",
           "example" : "0"
         }
       },
@@ -282,8 +267,6 @@
         },
         "id" : {
           "type" : "integer",
-          "format" : "int",
-          "description" : "Nonce",
           "example" : "0"
         }
       },
